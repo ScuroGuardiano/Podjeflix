@@ -1,0 +1,30 @@
+<div #videoWrapperEl class="video-wrapper">
+  <video #videoEl src="{{src}}" (ended)="onEnd()"></video>
+  <div id="video-controls">
+    <div id="left-side">
+      <div class="control" id="playpause" (click)="playPause()">
+        <mat-icon>{{playPauseIcon}}</mat-icon>
+      </div>
+      <div class="control" (click)="goBack(10)">
+        <mat-icon>replay_10</mat-icon>
+      </div>
+      <div class="control" (click)="goForward(10)">
+        <mat-icon>forward_10</mat-icon>
+      </div>
+      <div class="control" (mouseenter)="showVolumeBar('divshow')" (mouseleave)="hideVolumeBar('divhide')">
+        <input type="range" min=0 max=100 [(ngModel)]="volumePercentage" (input)="volumeChange()" [ngClass]="volumeBarVisibility ? 'visible' : 'hidden'" />
+        <mat-icon>volume_up</mat-icon>
+      </div>
+      <div id="title">{{title}}</div>
+    </div>
+    <div id="right-side">
+      <div class="control" id="settings">
+        <mat-icon>video_settings</mat-icon>
+      </div>
+      <div class="control" id="fullscreen" (click)="toogleFullscreen()">
+        <mat-icon *ngIf="fullscreen === false">fullscreen</mat-icon>
+        <mat-icon *ngIf="fullscreen">fullscreen_exit</mat-icon>
+      </div>
+    </div>
+  </div>
+</div>

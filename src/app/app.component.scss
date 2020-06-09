@@ -1,0 +1,9 @@
+webview {
+  height: 0px;
+  width: 100%;
+  position: absolute;
+}
+webview.visible {
+  height: 75%;
+  z-index: 1;
+}
