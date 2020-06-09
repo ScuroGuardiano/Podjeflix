@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CdaScrapperService } from './cda-scrapper.service';
+import { CDAService } from './cda.service';
 
-describe('CdaScrapperService', () => {
-  let service: CdaScrapperService;
+describe('CDAService', () => {
+  let service: CDAService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CdaScrapperService);
+    service = TestBed.inject(CDAService);
   });
 
   it('should be created', () => {

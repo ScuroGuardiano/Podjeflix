@@ -1,30 +1,25 @@
 import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
 import { WebviewTag } from 'electron';
+import { ICDAVideoInfo } from './utils/cda-utils';
+import { CDAService } from './services/cda.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
   title = 'podjeflix';
-  cdaSrc = 'https://www.cda.pl/video/417928397?wersja=720p';
-  videoUrl: string;
-  @ViewChild('webview') webview: ElementRef;
-  webviewVisibility = false;
+  cdaSrc: string;
+  cdaVideoInfo = '';
+
+  constructor(private cdaService: CDAService) {}
+
+  async extract() {
+    const cdaVideoInfo = await this.cdaService.getVideoInfo(this.cdaSrc);
+    this.cdaVideoInfo = JSON.stringify(cdaVideoInfo, null, 4);
+  }
 
   ngOnInit(): void {
-    document.addEventListener('keydown', e => {
-      if (e.key === 'p') {
-        this.webviewVisibility = !this.webviewVisibility;
-      }
-    });
-  }
-  ngAfterViewInit(): void {
-    /*const webviewNative: WebviewTag = this.webview.nativeElement;
-    webviewNative.addEventListener('dom-ready', async () => {
-      const videoSrc = await webviewNative.executeJavaScript(`document.querySelector('video').src`);
-      this.videoUrl = videoSrc;
-    });*/
   }
 }

@@ -1,3 +1,5 @@
-<webview #webview [attr.src]="cdaSrc" [attr.class]="webviewVisibility ? 'visible' : ''"></webview>
-
-<app-video-view [src]="'https://i1.jbzd.com.pl/contents/2020/02/cP8uIIS6ylflKVuD5tojZSwML8hphplN.mp4'"></app-video-view>
+<input type="url" [(ngModel)]="cdaSrc">
+<button (click)="extract()">Extract</button>
+<code>
+  <pre>{{cdaVideoInfo}}</pre>
+</code>
