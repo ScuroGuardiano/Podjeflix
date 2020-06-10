@@ -43,9 +43,9 @@ export async function cda_GetVideoInfo(url: string): Promise<ICDAVideoInfo> {
 }
 
 async function getCDAHTMLDoc(url: string): Promise<Document> {
-  const res = await fetch(url, {
-    mode: 'no-cors'
-  });
+  const $fetch = (window as any).nodeFetch;
+
+  const res = await $fetch(url);
 
   if (res.status === 200) {
     const body = await res.text();
