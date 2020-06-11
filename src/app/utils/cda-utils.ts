@@ -61,15 +61,15 @@ export async function cda_Search(query: string, ignorePremium = true): Promise<I
   cdaDocument.querySelectorAll('.video-clip-wrapper')
     .forEach(searchElement => {
       const linkTitleVisit = searchElement.querySelector('.link-title-visit');
-      const title = linkTitleVisit.textContent;
+      const title = linkTitleVisit?.textContent;
       const url = `https://www.cda.pl${linkTitleVisit.getAttribute('href')}`;
-      const description = searchElement.querySelector('label').getAttribute('tiptitle');
-      const duration = searchElement.querySelector('.timeElem').textContent;
-      const highestQuality = searchElement.querySelector('.hd-ico-elem').textContent;
-      const thumbUrl = searchElement.querySelector('img').src;
+      const description = searchElement.querySelector('label')?.getAttribute('tiptitle');
+      const duration = searchElement.querySelector('.timeElem')?.textContent;
+      const highestQuality = searchElement.querySelector('.hd-ico-elem')?.textContent;
+      const thumbUrl = searchElement.querySelector('img')?.src;
       const isPremium = !!searchElement.querySelector('.flag-video-premium');
 
-      if(isPremium && ignorePremium) {
+      if (isPremium && ignorePremium) {
         return;
       }
       videos.push({ title, url, description, duration, highestQuality, thumbUrl, isPremium });
@@ -79,9 +79,11 @@ export async function cda_Search(query: string, ignorePremium = true): Promise<I
 }
 
 async function getCDAHTMLDoc(url: string): Promise<Document> {
-  const $fetch = (window as any).nodeFetch;
+  const res = await fetch(url, {
+    mode: 'no-cors'
+  });
 
-  const res = await $fetch(url);
+  console.log(`Request for ${url} status: ${res.status}`);
 
   if (res.status === 200) {
     const body = await res.text();

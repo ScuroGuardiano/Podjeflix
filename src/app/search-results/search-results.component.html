@@ -1,0 +1,17 @@
+<nb-card
+  accent="danger"
+  size="large"
+  [nbSpinner]="loading"
+  nbSpinnerStatus="danger"
+  nbSpinnerSize="giant"
+  nbSpinnerMessage="Ładowanie wyników...">
+  <nb-card-header>Wyniki wyszukiwania</nb-card-header>
+  <nb-card-body>
+    <strong *ngIf='searchResults.length === 0'>Nic nie znaleziono</strong>
+    <nb-list>
+      <nb-list-item *ngFor="let searchResult of searchResults">
+        {{ searchResult.title }}
+      </nb-list-item>
+    </nb-list>
+  </nb-card-body>
+</nb-card>

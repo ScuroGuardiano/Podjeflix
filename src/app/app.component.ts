@@ -7,17 +7,14 @@ import { CDAService } from './services/cda.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'podjeflix';
-  cdaSrc: string;
-  cdaVideoInfo = '';
+  query = '';
+  searchQuery: string;
 
   constructor(private cdaService: CDAService) {}
 
-  async extract() {
-    const cdaVideoInfo = await this.cdaService.getVideoInfo(this.cdaSrc);
-    this.cdaVideoInfo = JSON.stringify(cdaVideoInfo, null, 4);
-  }
-
   ngOnInit(): void {
+  }
+  search() {
+    this.searchQuery = this.query;
   }
 }

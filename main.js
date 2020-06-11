@@ -3,6 +3,7 @@ const {
   BrowserWindow
 } = require('electron')
 const path = require('path');
+const url = require('url');
 
 function createWindow() {
   // Create the browser window.
@@ -12,13 +13,29 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: false,
       preload: path.join(__dirname, 'preload.js'),
-      webviewTag: true
+      webviewTag: true,
+      webSecurity: false
     },
     autoHideMenuBar: true
   })
 
-  // and load the index.html of the app.
+  win.webContents.on('did-fail-load', () => {
+    console.log('did-fail-load');
+    win.loadURL(url.format({
+      pathname: path.join(__dirname, 'dist/podjeflix/index.html'),
+      protocol: 'file:',
+      slashes: true
+    }));
+    // REDIRECT TO FIRST WEBPAGE AGAIN
+  });
+
   win.loadURL('http://localhost:4200');
+  // and load the index.html of the app.
+  //win.loadURL(url.format({
+  //  pathname: path.join(__dirname, 'dist/podjeflix/index.html'),
+  //  protocol: 'file:',
+  //  slashes: true
+  //}));;
 
   // Open the DevTools.
   //win.webContents.openDevTools()

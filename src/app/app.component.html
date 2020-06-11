@@ -1,5 +1,39 @@
-<input type="url" [(ngModel)]="cdaSrc">
-<button (click)="extract()">Extract</button>
-<code>
-  <pre>{{cdaVideoInfo}}</pre>
-</code>
+<nb-layout>
+
+  <nb-layout-header fixed>
+    <h1>Podjeflix</h1>
+  </nb-layout-header>
+
+  <nb-layout-column>
+    <nb-card>
+      <nb-card-body class="search-card">
+        <nb-form-field class="search-input">
+          <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
+          <input nbInput
+            [(ngModel)]="query"
+            (keyup.enter)='search()'
+            type="search"
+            fieldSize="giant"
+            status="info"
+            fullWidth
+            placeholder="Szukaj">
+        </nb-form-field>
+        <button nbButton
+          class="search-button"
+          (click)='search()'
+          outline size="giant"
+          [disabled]='!query'
+          status="info">
+          Szukaj
+        </button>
+      </nb-card-body>
+    </nb-card>
+    <app-search-results *ngIf="searchQuery" [query]="searchQuery"></app-search-results>
+  </nb-layout-column>
+
+
+  <nb-layout-footer fixed>
+    <a href="https://github.com/ScuroGuardiano/podjeflix">Podjeflix</a>&nbsp;Copyright &copy;&nbsp;<a href="https://github.com/ScuroGuardiano">Scuro Guardiano</a>&nbsp; 2020
+  </nb-layout-footer>
+
+</nb-layout>
