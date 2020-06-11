@@ -20,6 +20,16 @@ export interface ICDAVideoInfo {
   thumbUrl: string;
 }
 
+export interface ICDASearchVideoInfo {
+  title: string;
+  url: string;
+  description: string;
+  duration: string;
+  highestQuality: string;
+  thumbUrl: string;
+  isPremium: boolean;
+}
+
 export async function cda_GetVideoInfo(url: string): Promise<ICDAVideoInfo> {
   const qualityNames = {
     vl: '360p',
@@ -38,8 +48,34 @@ export async function cda_GetVideoInfo(url: string): Promise<ICDAVideoInfo> {
     directVideoUrl: decodeCDAVideoUrl(playerData.video.file),
     currentQuality: qualityNames[playerData.video.quality],
     availableQualities: getQualityList(cdaDocument),
-    thumbUrl: playerData.video.thumb
+    thumbUrl: playerData.video.thumb,
   };
+}
+
+export async function cda_Search(query: string, ignorePremium = true): Promise<ICDASearchVideoInfo[]> {
+  const searchUrl = `https://www.cda.pl/info/${query.replace(' ', '_').toLowerCase()}`;
+  const cdaDocument = await getCDAHTMLDoc(searchUrl);
+
+  const videos: ICDASearchVideoInfo[] = [];
+
+  cdaDocument.querySelectorAll('.video-clip-wrapper')
+    .forEach(searchElement => {
+      const linkTitleVisit = searchElement.querySelector('.link-title-visit');
+      const title = linkTitleVisit.textContent;
+      const url = `https://www.cda.pl${linkTitleVisit.getAttribute('href')}`;
+      const description = searchElement.querySelector('label').getAttribute('tiptitle');
+      const duration = searchElement.querySelector('.timeElem').textContent;
+      const highestQuality = searchElement.querySelector('.hd-ico-elem').textContent;
+      const thumbUrl = searchElement.querySelector('img').src;
+      const isPremium = !!searchElement.querySelector('.flag-video-premium');
+
+      if(isPremium && ignorePremium) {
+        return;
+      }
+      videos.push({ title, url, description, duration, highestQuality, thumbUrl, isPremium });
+    });
+
+  return videos;
 }
 
 async function getCDAHTMLDoc(url: string): Promise<Document> {

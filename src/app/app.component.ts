@@ -1,6 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
-import { WebviewTag } from 'electron';
-import { ICDAVideoInfo } from './utils/cda-utils';
+import { Component, OnInit } from '@angular/core';
 import { CDAService } from './services/cda.service';
 
 @Component({
