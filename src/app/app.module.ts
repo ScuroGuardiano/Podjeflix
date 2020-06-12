@@ -21,13 +21,15 @@ import {
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { SearchResultsItemComponent } from './search-results-item/search-results-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WebviewDirective,
     VideoViewComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    SearchResultsItemComponent
   ],
   imports: [
     BrowserModule,

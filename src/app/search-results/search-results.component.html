@@ -8,10 +8,6 @@
   <nb-card-header>Wyniki wyszukiwania</nb-card-header>
   <nb-card-body>
     <strong *ngIf='searchResults.length === 0'>Nic nie znaleziono</strong>
-    <nb-list>
-      <nb-list-item *ngFor="let searchResult of searchResults">
-        {{ searchResult.title }}
-      </nb-list-item>
-    </nb-list>
+    <app-search-results-item *ngFor="let result of searchResults" [video]="result"></app-search-results-item>
   </nb-card-body>
 </nb-card>
