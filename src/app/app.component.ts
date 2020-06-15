@@ -7,14 +7,8 @@ import { CDAService } from './services/cda.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  query = '';
-  searchQuery: string;
-
-  constructor(private cdaService: CDAService) {}
+  constructor() {}
 
   ngOnInit(): void {
-  }
-  search() {
-    this.searchQuery = this.query;
   }
 }

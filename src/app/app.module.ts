@@ -22,6 +22,7 @@ import {
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { SearchResultsItemComponent } from './search-results-item/search-results-item.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SearchResultsItemComponent } from './search-results-item/search-results
     WebviewDirective,
     VideoViewComponent,
     SearchResultsComponent,
-    SearchResultsItemComponent
+    SearchResultsItemComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
