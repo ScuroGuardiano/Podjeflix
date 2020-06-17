@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { VideoViewComponent } from './video-view/video-view.component';
+import { TenebrisPlayerComponent } from './tenebris-player/tenebris-player.component';
 
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'watch', component: VideoViewComponent },
+  { path: 'player', component: TenebrisPlayerComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 

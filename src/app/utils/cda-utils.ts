@@ -69,6 +69,11 @@ export async function cda_Search(query: string, ignorePremium = true): Promise<I
       const thumbUrl = searchElement.querySelector('img')?.src;
       const isPremium = !!searchElement.querySelector('.flag-video-premium');
 
+      const isFolder = searchElement.querySelector('a.folder-item');
+      if (isFolder) {
+        return;
+      }
+
       if (isPremium && ignorePremium) {
         return;
       }

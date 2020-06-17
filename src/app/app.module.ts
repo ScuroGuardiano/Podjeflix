@@ -23,6 +23,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { SearchResultsItemComponent } from './search-results-item/search-results-item.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TenebrisPlayerComponent } from './tenebris-player/tenebris-player.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     VideoViewComponent,
     SearchResultsComponent,
     SearchResultsItemComponent,
-    DashboardComponent
+    DashboardComponent,
+    TenebrisPlayerComponent
   ],
   imports: [
     BrowserModule,
