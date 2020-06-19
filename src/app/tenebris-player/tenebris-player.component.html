@@ -1,16 +1,46 @@
 <div #videoWrapperEl class="video-wrapper">
-  <div id="controls">
+  <video
+    #videoEl
+    src="https://i1.jbzd.com.pl/contents/2020/02/cP8uIIS6ylflKVuD5tojZSwML8hphplN.mp4"
+    (ended)="onEnd()"
+    (timeupdate)="onTimeUpdate()"
+    (click)="onVideoClick()"
+    (dblclick)="toogleFullscreen()"
+    (mousemove)="showControls()"
+    [ngClass]="{'hidden': !controlsVisibility}"></video>
+  <div id="controls"
+    [ngClass]="{'hidden': !controlsVisibility}"
+    (mouseenter)="stopControlsHide()"
+    (mouseleave)="startControlsHide()">
     <div id="leftside">
-      <button id="playpause">
-        <mat-icon>play_arrow</mat-icon>
+      <button id="playpause" (click)="playPauseClick()">
+        <mat-icon>{{ playPauseIcon }}</mat-icon>
       </button>
-      <button id="forward">
+      <button id="forward" (click)="goBack(10)">
         <mat-icon>replay_10</mat-icon>
       </button>
-      <button id="backward">
+      <button id="backward" (click)="goForward(10)">
         <mat-icon>forward_10</mat-icon>
+      </button>
+      <button id="volume" (click)="toogleMute()">
+        <mat-icon>{{ muted ? "volume_off" : "volume_up" }}</mat-icon>
+      </button>
+      <input id="volume-slider" [(ngModel)]="volumeBarValue" (input)="volumeChange()" type="range" min="0" max="100">
+      <span id="time">
+        {{ currentTime }} / {{ duration }}
+      </span>
+      ·
+      <span id="title">
+        {{ title }}
+      </span>
+    </div>
+    <div id="rightside">
+      <button id="settings">
+        <mat-icon>video_settings</mat-icon>
+      </button>
+      <button id="fullscreen" (click)="toogleFullscreen()">
+        <mat-icon>{{ fullscreened ? "fullscreen_exit" : "fullscreen" }}</mat-icon>
       </button>
     </div>
   </div>
-  <video src="https://i1.jbzd.com.pl/contents/2020/02/cP8uIIS6ylflKVuD5tojZSwML8hphplN.mp4"></video>
 </div>

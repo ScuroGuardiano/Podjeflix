@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'watch', component: VideoViewComponent },
   { path: 'player', component: TenebrisPlayerComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+  { path: '', redirectTo: '/player', pathMatch: 'full' }
 ];
 
 @NgModule({
