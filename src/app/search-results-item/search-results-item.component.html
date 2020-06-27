@@ -1,3 +1,8 @@
-<div [routerLink]="['/watch']" [title]="getDescription()">
-  <img src="{{getThumb(400, 225)}}" alt="Miniaturka wideo" /><br>
+<div class="item" [routerLink]="['/watch']" [title]="getDescription()">
+  <img src="{{getThumb(400, 225)}}" alt="Miniaturka wideo" />
+  <span class="quality">{{ video.highestQuality }}</span>
+  <span class="duration">{{ video.duration }}</span>
+  <div class="title-container">
+    <span class="title">{{ video.title }}</span>
+  </div>
 </div>

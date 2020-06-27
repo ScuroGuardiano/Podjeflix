@@ -1,7 +1,7 @@
 <div #videoWrapperEl class="video-wrapper">
   <video
     #videoEl
-    src="https://i1.jbzd.com.pl/contents/2020/02/cP8uIIS6ylflKVuD5tojZSwML8hphplN.mp4"
+    [src]="src"
     (ended)="onEnd()"
     (timeupdate)="onTimeUpdate()"
     (click)="onVideoClick()"

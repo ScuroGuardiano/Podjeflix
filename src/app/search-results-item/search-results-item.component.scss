@@ -1,8 +1,56 @@
-div {
+.item {
   width: 400px;
   height: 225px;
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: 5px;
   margin-right: 5px;
+  position: relative;
+  cursor: pointer;
+}
+
+.item:hover .title {
+  color: purple;
+  text-decoration: underline;
+}
+
+.quality {
+  display: block;
+  position: absolute;
+  background-color: purple;
+  bottom: 45px;
+  left: 0px;
+  border-right: solid 10px purple;
+  border-radius: 0px 40px 40px 0px;
+  padding-left: 5px;
+}
+
+.duration {
+  display: block;
+  position: absolute;
+  background-color: purple;
+  bottom: 45px;
+  right: 0px;
+  border-left: solid 10px purple;
+  border-radius: 40px 0px 0px 40px;
+  text-align: right;
+  padding-right: 5px;
+}
+
+.title-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: black;
+  bottom: 0px;
+  height: 2.7em;
+}
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  text-align: center;
 }

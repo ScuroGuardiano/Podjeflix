@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tenebris-player',
@@ -6,6 +6,8 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angula
   styleUrls: ['./tenebris-player.component.scss']
 })
 export class TenebrisPlayerComponent implements OnInit, AfterViewInit {
+  @Input() src: string;
+
   @ViewChild('videoEl') private videoRef: ElementRef<HTMLVideoElement>;
   @ViewChild('videoWrapperEl') private videoWrapper: ElementRef<HTMLDivElement>;
   video: HTMLVideoElement;

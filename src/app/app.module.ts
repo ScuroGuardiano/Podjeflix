@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { WebviewDirective } from '../webview.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
-import { VideoViewComponent } from './video-view/video-view.component';
 import { FormsModule } from '@angular/forms';
 import {
   NbThemeModule,
@@ -29,7 +28,6 @@ import { TenebrisPlayerComponent } from './tenebris-player/tenebris-player.compo
   declarations: [
     AppComponent,
     WebviewDirective,
-    VideoViewComponent,
     SearchResultsComponent,
     SearchResultsItemComponent,
     DashboardComponent,
