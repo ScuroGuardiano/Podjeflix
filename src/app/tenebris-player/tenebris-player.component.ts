@@ -16,6 +16,7 @@ export class TenebrisPlayerComponent implements OnInit, AfterViewInit {
   volume = 100;
   volumeBarValue = 100;
   muted = false;
+  progress = 0;
 
   hideControlsTimeout: any;
   controlsVisibility = true;
@@ -77,6 +78,7 @@ export class TenebrisPlayerComponent implements OnInit, AfterViewInit {
   }
   onTimeUpdate() {
     this.currentTime = this.formatTime(this.video.currentTime);
+    this.progress = this.video.currentTime / this.video.duration;
   }
   toogleFullscreen() {
     if (this.fullscreened) {
@@ -106,6 +108,11 @@ export class TenebrisPlayerComponent implements OnInit, AfterViewInit {
     }
     this.volume = this.volumeBarValue;
     this.video.volume = this.volume / 100;
+  }
+  progressBarClick(event: MouseEvent) {
+    this.video.currentTime =
+      (event.offsetX / (event.target as HTMLProgressElement).clientWidth)
+      * this.video.duration;
   }
   startControlsHide() {
     if (this.hideControlsTimeout) {

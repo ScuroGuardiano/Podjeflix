@@ -12,35 +12,38 @@
     [ngClass]="{'hidden': !controlsVisibility}"
     (mouseenter)="stopControlsHide()"
     (mouseleave)="startControlsHide()">
-    <div id="leftside">
-      <button id="playpause" (click)="playPauseClick()">
-        <mat-icon>{{ playPauseIcon }}</mat-icon>
-      </button>
-      <button id="forward" (click)="goBack(10)">
-        <mat-icon>replay_10</mat-icon>
-      </button>
-      <button id="backward" (click)="goForward(10)">
-        <mat-icon>forward_10</mat-icon>
-      </button>
-      <button id="volume" (click)="toogleMute()">
-        <mat-icon>{{ muted ? "volume_off" : "volume_up" }}</mat-icon>
-      </button>
-      <input id="volume-slider" [(ngModel)]="volumeBarValue" (input)="volumeChange()" type="range" min="0" max="100">
-      <span id="time">
-        {{ currentTime }} / {{ duration }}
-      </span>
-      ·
-      <span id="title">
-        {{ title }}
-      </span>
-    </div>
-    <div id="rightside">
-      <button id="settings">
-        <mat-icon>video_settings</mat-icon>
-      </button>
-      <button id="fullscreen" (click)="toogleFullscreen()">
-        <mat-icon>{{ fullscreened ? "fullscreen_exit" : "fullscreen" }}</mat-icon>
-      </button>
+    <progress [value]="progress" (click)="progressBarClick($event)"></progress>
+    <div id="controls-down">
+      <div id="leftside">
+        <button id="playpause" (click)="playPauseClick()">
+          <mat-icon>{{ playPauseIcon }}</mat-icon>
+        </button>
+        <button id="forward" (click)="goBack(10)">
+          <mat-icon>replay_10</mat-icon>
+        </button>
+        <button id="backward" (click)="goForward(10)">
+          <mat-icon>forward_10</mat-icon>
+        </button>
+        <button id="volume" (click)="toogleMute()">
+          <mat-icon>{{ muted ? "volume_off" : "volume_up" }}</mat-icon>
+        </button>
+        <input id="volume-slider" [(ngModel)]="volumeBarValue" (input)="volumeChange()" type="range" min="0" max="100">
+        <span id="time">
+          {{ currentTime }} / {{ duration }}
+        </span>
+        ·
+        <span id="title">
+          {{ title }}
+        </span>
+      </div>
+      <div id="rightside">
+        <button id="settings">
+          <mat-icon>video_settings</mat-icon>
+        </button>
+        <button id="fullscreen" (click)="toogleFullscreen()">
+          <mat-icon>{{ fullscreened ? "fullscreen_exit" : "fullscreen" }}</mat-icon>
+        </button>
+      </div>
     </div>
   </div>
 </div>
